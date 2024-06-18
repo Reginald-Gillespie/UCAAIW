@@ -5,7 +5,7 @@
 
 # Save to disk
 $scriptURL = "https://raw.githubusercontent.com/Reginald-Gillespie/UCAAIW/main/Main.ps1"
-$saveLoc = "C:\Temp\Main.ps1"
+$saveLoc = "$HOME\Temp\Main.ps1"
 Invoke-WebRequest -Uri $scriptURL -OutFile $saveLoc
 
 # Start
