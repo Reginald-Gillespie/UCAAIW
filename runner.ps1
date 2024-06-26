@@ -6,9 +6,10 @@
 # Save to disk
 $scriptURL = "https://raw.githubusercontent.com/Reginald-Gillespie/UCAAIW/main/Main.ps1"
 $saveLoc = "$HOME\Temp\Main.ps1"
-mkdir "$HOME\Temp"
+mkdir "$HOME\Temp" -Force | Out-Null
 Invoke-WebRequest -Uri $scriptURL -OutFile $saveLoc
 
 # Start
-Invoke-Expression -Command $saveLoc
+# Invoke-Expression -Command $saveLoc # Does not start as admin like it needs
+Start-Process powershell -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$saveLoc`"" -Verb RunAs
 
