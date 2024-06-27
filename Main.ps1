@@ -92,7 +92,7 @@ $action = New-ScheduledTaskAction -Execute $exePath # run agent
 $trigger = New-ScheduledTaskTrigger -AtStartup # run at startup
 $userSID = [System.Security.Principal.WindowsIdentity]::GetCurrent().User.Value # run as this user's scope so the icon shows in system tray
 $principal = New-ScheduledTaskPrincipal -UserId $userSID -LogonType Interactive -RunLevel Highest # but also run it as admin to avoid issues
-$settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries:$true
+$settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries:$true -DontStopIfGoingOnBatteries
 $task = New-ScheduledTask -Action $action -Trigger $trigger -Principal $principal -Settings $settings 
 Register-ScheduledTask -TaskName $taskName -InputObject $task | Out-Null
 
